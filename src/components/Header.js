@@ -1,20 +1,20 @@
 import { useSelector, useDispatch } from "react-redux";
-import { authActions } from "../store/index";
+
 import classes from "./Header.module.css";
+import { authActions } from "../store/auth";
 
 const Header = () => {
+  const dispatch = useDispatch();
   const isAuth = useSelector((state) => state.auth.isAuthenticated);
  
-  const dispatch = useDispatch();
- 
   const logoutHandler = () => {
-    dispatch(authActions.Logout());
+    dispatch(authActions.logout());
   };
 
   return (
     <header className={classes.header}>
       <h1>Redux Auth</h1>
-      {isAuth && 
+      {isAuth && (
         <nav>
           <ul>
             <li>
@@ -28,7 +28,7 @@ const Header = () => {
             </li>
           </ul>
         </nav>
-      }
+      )}
     </header>
   );
 };
